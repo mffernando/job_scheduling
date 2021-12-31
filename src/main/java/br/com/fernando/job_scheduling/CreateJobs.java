@@ -21,5 +21,28 @@ public class CreateJobs {
 		jobs.add(new Job(2, "Importação de dados da Base Legada", "2019/11/11 12:00:00", "4 horas"));
 		jobs.add(new Job(3, "Importação de dados de integração", "2019/11/11 08:00:00", "6 horas"));
 
+		// scheduler job
+		for (Job job : jobs) {
+
+			// System.out.println(job);
+			// System.out.println(jobs);
+
+			// converting String to Date
+			Date jobEndTime = new Date(job.getJobEndTime());
+			Date endTime = new Date(job.getEndTime());
+			Date initialTime = new Date(job.getInitialTime());
+			// job id
+			int id = job.getId();
+
+			if (jobEndTime.before(endTime) && jobEndTime.after(initialTime)) {
+				System.out.println("Job "+ id +" will run");
+				// System.out.println(jobEndTime + " < " + endTime);
+			} else {
+				// System.out.println(jobEndTime + " > " + endTime);
+				System.out.println("Job "+ id +" will not run");
+			}
+
+		}
+
 	}
 }
